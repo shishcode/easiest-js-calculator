@@ -6,7 +6,7 @@ function handleClick(key) {
     let isOperatorKey = operators.includes(key);
     let hasOperatorAtTheEnd = operators.includes(input[input.length - 1]);
 
-    // CASE 1- Başta "-" haricinde işleme basmaması gerekiyor.
+    // CASE 1- The user should not be allowed to press operator signs except "-".
     let hasOperatorsAtFirst2 = forbiddenOperators.includes(key) && input === ""
     // let hasOperatorsAtFirst = (key === "*" || key === "/" || key === "+") && input === ""
     
@@ -20,21 +20,23 @@ function handleClick(key) {
         return;
     }
 
-    // CASE 2 - Arka arkaya işlem tuşlarına basmasın
-    // input değişkeninin son karakteri ile girilen key operatörlerden olmamalı
+    // CASE 2 - The user should not be allowed to press operator signs subsequently
+    // the last character of input variable must be different from the entered operator key.
     let hasCase2 = isOperatorKey && hasOperatorAtTheEnd
     if (hasCase2) {
-        let message = "4 işlem öğren arkadaş!";
+        let message = "Subsequent operators!";
         document.getElementById("display").value = message;
         setTimeout( () => {
             document.getElementById("display").value = input;
         }, 1000);
         return;
     }
-
-    // Girilen değerleri tek bir stringe dönüştür
+    
+    // CALCULATION IN ACTION
+    // combine the entires into a single string
     input += key;
-    // input = input + key; // Yukarıdaki ile aynı
+    
+    // display the input variable on the screen
     document.getElementById("display").value = input;
 }
 
@@ -52,7 +54,7 @@ function findResult() {
     let hasOperatorAtTheEnd = operators.includes(input[input.length - 1]);
 
     if(hasOperatorAtTheEnd) {
-        let message = "4 işlem öğren arkadaş!";
+        let message = "Has an operator at the end!";
         document.getElementById("display").value = message;
         setTimeout( () => {
             document.getElementById("display").value = input;
@@ -64,11 +66,8 @@ function findResult() {
     input = "";
 }
 
-
-// EVAL("string")
-// içerisindeki stringi matematiksel bir işleme dönüştürmeye yarıyor. 
-// bu işlemin sonucunu yazıdırıyor.
-
-let myString = "3/3";
-console.log("myString:" + myString);
-console.log("sonuc: " + eval(myString));
+// HOW EVAL WORK?
+// EVAL("string") : evaluates the string and turns it into a mathematical query and prints the result. 
+// let myString = "3/3";
+// console.log("myString:" + myString);
+// console.log("sonuc: " + eval(myString));
